@@ -1,5 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Root from 'app'
+import { hot } from 'react-hot-loader'
 
-ReactDOM.render(<Root />, document.getElementById('root'))
+const App = hot(module)(Root)
+
+ReactDOM.render(<App />, document.getElementById('root'))

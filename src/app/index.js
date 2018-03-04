@@ -1,6 +1,13 @@
 import React from 'react'
-import { hot } from 'react-hot-loader'
+import { css } from 'emotion'
+import Hello from './hello'
 
-const Root = () => <div>Hello World!</div>
+const style = css`
+	color: red;
+`
 
-export default hot(module)(Root)
+export default () => (
+	<div className={style}>
+		<Hello recipient="Hal" />
+	</div>
+)
