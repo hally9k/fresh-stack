@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
+const proxy = require('./src/proxy').default
 
 module.exports = {
 	mode: 'development',
@@ -30,5 +31,8 @@ module.exports = {
 	],
 	resolve: {
 		modules: ['node_modules', 'src']
+	},
+	serve: {
+		add: proxy
 	}
 }
