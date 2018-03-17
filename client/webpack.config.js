@@ -4,8 +4,8 @@ const proxy = require('./src/proxy').default
 
 module.exports = {
 	mode: 'development',
-	devtool: 'source-map',
-	entry: path.resolve(__dirname, 'src/index.js'),
+	devtool: 'cheap-module-source-map',
+	entry: ['react-hot-loader/patch', path.resolve(__dirname, 'src/index.js')],
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'app.js'
@@ -17,7 +17,6 @@ module.exports = {
 				include: path.resolve(__dirname, 'src'),
 				loader: require.resolve('babel-loader'),
 				options: {
-					cacheDirectory: true,
 					plugins: ['react-hot-loader/babel']
 				}
 			}
@@ -34,6 +33,9 @@ module.exports = {
 		modules: ['node_modules', 'src']
 	},
 	serve: {
-		add: proxy
+		add: proxy,
+		hot: {
+			hot: true
+		}
 	}
 }

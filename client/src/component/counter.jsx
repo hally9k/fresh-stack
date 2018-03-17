@@ -1,9 +1,32 @@
 import React from 'react'
 import { css } from 'emotion'
 
-const style = css`
-	height: 500px;
-	width: 500px;
-`
+export default class Incrementer extends React.Component {
+	constructor() {
+		super()
 
-export default () => <img src="/images/kitten" className={style} />
+		this.state = { number: 0 }
+	}
+
+	style = css`
+		color: green;
+	`
+
+	componentWillMount = () => this.getNextNumber()
+
+	getNextNumber = () => {
+		fetch('/api')
+			.then(x => x.json())
+			.then(number =>
+				this.setState(() => ({
+					number
+				}))
+			)
+	}
+
+	render = () => (
+		<div className={this.style} onClick={this.getNextNumber}>
+			{this.state.number}
+		</div>
+	)
+}
