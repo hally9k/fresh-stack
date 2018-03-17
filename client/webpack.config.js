@@ -34,8 +34,12 @@ module.exports = {
 	},
 	serve: {
 		add: proxy,
+		host: '0.0.0.0',
+		port: 9090,
 		hot: {
-			hot: true
+			hot: true,
+			host: '0.0.0.0',
+			port: 9091
 		}
 	}
 }

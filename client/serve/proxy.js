@@ -11,7 +11,7 @@ const proxyOptions = {
 	pathRewrite: {
 		'/api': '/'
 	},
-	target: 'http://localhost:8081',
+	target: 'http://localhost:9092',
 	changeOrigin: true
 }
 
