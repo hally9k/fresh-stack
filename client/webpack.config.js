@@ -1,6 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
-const proxy = require('./src/proxy').default
+const proxy = require('./serve/proxy').default
 
 module.exports = {
 	mode: 'development',

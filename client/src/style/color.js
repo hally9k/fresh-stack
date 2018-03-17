@@ -1,4 +1,5 @@
 export const COLOR_PRIMARY = `rgb(66, 134, 244)`
+export const COLOR_PRIMARY2 = `rgb(82, 119, 178)`
 
 export const COLOR_SECONDARY = `rgb(249, 217, 235)`
 

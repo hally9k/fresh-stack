@@ -16,6 +16,8 @@ const proxyOptions = {
 }
 
 router.get('/api', convert(proxy(proxyOptions)))
+router.post('/api', convert(proxy(proxyOptions)))
+router.delete('/api', convert(proxy(proxyOptions)))
 
 module.exports.default = (app, middleware, options) => {
 	// since we're manipulating the order of middleware added, we need to handle

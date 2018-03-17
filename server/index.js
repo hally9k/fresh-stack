@@ -1,11 +1,29 @@
 const Koa = require('koa')
+const Router = require('koa-router')
+const bodyParser = require('koa-body-parser')
 const app = new Koa()
 
-let incrementer = 0
+const todos = []
 
-app.use(async function(ctx) {
-	console.log(incrementer)
-	ctx.body = ++incrementer
+const router = new Router()
+router.get('*', async ctx => {
+	ctx.body = todos
 })
+
+router.post('*', async ctx => {
+	todos.push(ctx.request.body)
+
+	ctx.body = todos
+})
+
+router.delete('*', async ctx => {
+	const index = Number(ctx.request.body)
+	todos.splice(index, 1)
+
+	ctx.body = todos
+})
+
+app.use(bodyParser())
+app.use(router.routes())
 
 app.listen(8081)
