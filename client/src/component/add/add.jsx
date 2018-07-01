@@ -5,23 +5,42 @@ export default class Add extends React.Component {
     constructor() {
         super()
 
-        this.state = {
-            value: ''
-        }
+        this.state = {}
     }
 
-    handleSearch = () => {
-        this.props.search(this.state.value)
+    handleSubmit = (event) => {
+        event.stopPropagation()
+        event.preventDefault()
+
+        this.props.add(this.state)
     }
 
-    handleChange = ({ target: { value } }) => this.setState({ value })
+    handleChange = ({ target: { name, value } }) => this.setState({ [name]: value })
 
     render() {
         return (
-            <div>
-                <input value={this.state.value} onChange={this.handleChange} />
-                <Button text="Add" onClick={this.handleSearch} />
-            </div>
+            <form name="add-form" onSubmit={this.handleSubmit}>
+                <label>
+                    Title<input value={this.state.value} required={true} name="title" onChange={this.handleChange} />
+                </label>
+                <label>
+                    Description<input
+                        value={this.state.value}
+                        required={true}
+                        name="description"
+                        onChange={this.handleChange}
+                    />
+                </label>
+                <label>
+                    Image URL<input
+                        value={this.state.value}
+                        required={true}
+                        name="image"
+                        onChange={this.handleChange}
+                    />
+                </label>
+                <Button type="submit" text="Add" />
+            </form>
         )
     }
 }

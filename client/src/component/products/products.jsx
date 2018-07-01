@@ -7,7 +7,13 @@ export default class Products extends React.Component {
         return (
             <div>
                 {products.map((product, index) => {
-                    return <p key={`product-${index}`}>{product.title}</p>
+                    return (
+                        <React.Fragment key={`product-${index}`}>
+                            <p>{product.title}</p>
+                            <img src={product.image} alt={product.title} />
+                            <hidden>{product.id}</hidden>
+                        </React.Fragment>
+                    )
                 })}
             </div>
         )

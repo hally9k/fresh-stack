@@ -50,16 +50,16 @@ const addEpic = ($action) =>
     $action.pipe(
         ofType(ADD),
         mergeMap(({ payload }) => {
-            return fetch('/api/add', { method: 'POST', body: payload })
-                .then((x) => {
-                    if (x.ok === false) {
-                        throw Error(statusText)
+            return fetch('/api/add', { method: 'POST', body: JSON.stringify(payload) })
+                .then((res) => {
+                    if (res.ok === false) {
+                        throw Error(res.statusText)
                     }
 
-                    return x.json()
+                    return res.json()
                 })
                 .then((items) => {
-                    return [] // success()
+                    return receive([])
                 })
         })
     )

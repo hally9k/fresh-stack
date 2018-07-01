@@ -3,6 +3,7 @@ const Router = require('koa-router')
 const bodyParser = require('koa-body-parser')
 const app = new Koa()
 const ElasticSearch = require('elasticsearch')
+const uuidv4 = require('uuid/v4')
 
 const client = new ElasticSearch.Client({
 	host: 'localhost:9200',
@@ -17,16 +18,15 @@ const router = new Router()
 router.post('/search', async ctx => {
 	const response = await client
 		.search({
-			index: 'simpsons',
-			type: 'episode',
+			index: 'no-plastic',
+			type: 'product',
 			body: {
 				query: {
 					match: {
 						title: ctx.request.body
 					}
 				}
-			},
-			_sourceInclude: ['title']
+			}
 		})
 		.catch(error => {
 			throw Error(error)
@@ -36,13 +36,12 @@ router.post('/search', async ctx => {
 })
 
 router.post('/add', async ctx => {
-	// ctx.request.body
-
 	const response = await client
-		.get({
-			index: 'simpsons',
-			type: 'episode',
-			id: 1
+		.create({
+			index: 'no-plastic',
+			type: 'product',
+			id: uuidv4(),
+			body: ctx.request.body
 		})
 		.catch(error => {
 			throw Error(error)

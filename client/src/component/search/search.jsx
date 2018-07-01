@@ -20,7 +20,7 @@ export default class Search extends React.Component {
         return (
             <div>
                 <input value={this.state.value} onChange={this.handleChange} />
-                <Button text="Add" onClick={this.handleSearch} />
+                <Button text="Search" onClick={this.handleSearch} />
             </div>
         )
     }
