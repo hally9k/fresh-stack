@@ -1,5 +1,5 @@
-import todo from 'select/todo'
+import product from 'select/product'
 
 export default {
-	todo
+    product
 }

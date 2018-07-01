@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux'
 import { combineEpics } from 'redux-observable'
-import todo, { epics as todoEpics } from 'duck/todo'
+import { wrapEpic } from 'utility/rx'
+import product, { epics as productEpics } from 'duck/product'
 
 export default combineReducers({
-	todo
+    product
 })
 
-export const epics = combineEpics(...Object.values(todoEpics))
+export const epics = combineEpics(...[...Object.values(productEpics)].map(wrapEpic))

@@ -1,4 +1,3 @@
-import './rx.js'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from 'component'
@@ -10,15 +9,17 @@ import { List } from 'immutable'
 import { Provider } from 'react-redux'
 import logger from 'redux-logger'
 
-const epicMiddleware = createEpicMiddleware(epics)
+const epicMiddleware = createEpicMiddleware()
 
 const enhancer = composeWithDevTools(applyMiddleware(epicMiddleware, logger))
 
-const store = createStore(reducers, { todo: List() }, enhancer)
+const store = createStore(reducers, { product: List() }, enhancer)
 
 ReactDOM.render(
-	<Provider store={store}>
-		<App />
-	</Provider>,
-	document.getElementById('root')
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root')
 )
+
+epicMiddleware.run(epics)
